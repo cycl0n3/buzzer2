@@ -2,19 +2,26 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Buzzer2" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Buzzer2" %>">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+
+    <title><%= content_for?(:title) ? yield(:title) : 'Buzzer2' %></title>
+
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : 'Buzzer2' %>">
+
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
     <%= csrf_meta_tags %>
   </head>
   <body>
     <header>
       <%= render 'layouts/navigation' %>
     </header>
+
     <main role="main">
        <%= render 'layouts/messages' %>
+
        <%= yield %>
     </main>
+
+    <%= javascript_include_tag 'application' %>
   </body>
 </html>

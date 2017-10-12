@@ -2,6 +2,7 @@
   "name": "buzzer2",
   "private": true,
   "dependencies": {
+    "angular": "^1.6.6",
     "jquery": "^3.2.1"
   }
 }
