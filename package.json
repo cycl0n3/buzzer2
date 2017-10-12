@@ -1,0 +1,7 @@
+{
+  "name": "buzzer2",
+  "private": true,
+  "dependencies": {
+    "jquery": "^3.2.1"
+  }
+}
