@@ -1,31 +1,39 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :error]
+  after_action :verify_authorized, except: [:new]
 
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = current_user.articles
+    authorize Article
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
+    authorize @article
   end
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article = current_user.articles.build
   end
 
   # GET /articles/1/edit
   def edit
+    authorize @article
+  end
+
+  # GET /articles/1/error
+  def error
   end
 
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(article_params)
+    @article = current_user.articles.build(article_params)
 
     respond_to do |format|
       if @article.save
@@ -64,6 +72,11 @@ class ArticlesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def user_not_authorized
+      flash[:alert] = "Access denied."
+      redirect_to new_article_path
+    end
+
     def set_article
       @article = Article.find(params[:id])
     end
