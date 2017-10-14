@@ -14,5 +14,5 @@
 //= require angular
 //= require handlebars/dist/handlebars
 //= require rails-ujs
-//= require bootstrap-sprockets
+//= require bootstrap
 //= require_tree .
