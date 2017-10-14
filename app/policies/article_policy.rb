@@ -17,4 +17,12 @@ class ArticlePolicy
   def edit?
     @current_user.admin? or @current_user == @article.user
   end
+
+  def update?
+    @current_user.admin? or @current_user == @article.user
+  end
+
+  def destroy?
+    @current_user.admin? or @current_user == @article.user
+  end
 end
