@@ -6,4 +6,23 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
-puts 'CREATED ADMIN USER: ' << user.email
+puts "CREATED ADMIN USER: #{user.email}"
+
+10.times {
+  user = User.new(email: Faker::Internet.email, password: 'password', role: User.roles[:user])
+
+  user.save!
+  puts "CREATED USER: #{user.email}"
+}
+
+users = User.all
+
+100.times {
+  random = Random.new
+  user = users[random.rand(0..users.size-1)]
+
+  article = Article.new(title: Faker::Food.dish, user: user)
+  article.save!
+
+  puts "CREATED ARTICLE: #{article.title} FOR USER #{user.email}"
+}

@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :articles
+
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
@@ -11,5 +13,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :articles
+  validates_confirmation_of :password
+  validates_length_of :password, :within => 4..20
+  validates_presence_of :password, :if => :password_required?
+
+  def password_required?
+    encrypted_password.blank? || password.present?
+  end
 end

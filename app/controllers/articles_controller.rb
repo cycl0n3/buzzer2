@@ -3,35 +3,26 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy, :error]
   after_action :verify_authorized, except: [:new]
 
-  # GET /articles
-  # GET /articles.json
   def index
-    @articles = current_user.articles
+    @articles = current_user.articles.limit(10)
     authorize Article
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
   def show
     authorize @article
   end
 
-  # GET /articles/new
   def new
     @article = current_user.articles.build
   end
 
-  # GET /articles/1/edit
   def edit
     authorize @article
   end
 
-  # GET /articles/1/error
   def error
   end
 
-  # POST /articles
-  # POST /articles.json
   def create
     @article = current_user.articles.build(article_params)
 
@@ -46,8 +37,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /articles/1
-  # PATCH/PUT /articles/1.json
   def update
     authorize @article
 
@@ -62,8 +51,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # DELETE /articles/1
-  # DELETE /articles/1.json
   def destroy
     authorize @article
 
@@ -75,18 +62,15 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def user_not_authorized
       # render :file => 'public/404.html', :status => :not_found, :layout => false
       render :file => 'public/404.html', :status => :not_found
     end
 
     def set_article
-      # @article = Article.find(params[:id])
       @article = current_user.articles.find_by(id: params[:id]) || Article.new
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
       params.require(:article).permit(:title)
     end
