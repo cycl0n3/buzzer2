@@ -22,6 +22,10 @@ async@^1.4.0:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
+bootstrap3-dialog@^1.35.4:
+  version "1.35.4"
+  resolved "https://registry.yarnpkg.com/bootstrap3-dialog/-/bootstrap3-dialog-1.35.4.tgz#07323b5654dae5b65ac5ea2471a8437c70964d3c"
+
 camelcase@^1.0.2:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-1.2.1.tgz#9bb5304d2e0b56698b2c758b08a3eaa9daa58a39"
