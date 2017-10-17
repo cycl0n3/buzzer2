@@ -11,12 +11,12 @@
       </thead>
 
       <tbody>
-        <tr ng-repeat="article in articles">
+        <tr ng-repeat="article in articles" on-finish-render="ngRepeatFinished">
           <td>{{article.title}}</td>
-          <td><a class="btn btn-info" href="<%= url_for controller: 'articles' %>/{{article.id}}">Show</a></td>
-          <td><a class="btn btn-warning" href="<%= url_for controller: 'articles' %>/{{article.id}}/edit">Edit</a></td>
+          <td><a class="btn btn-info" href="{{article.show_url}}">Show</a></td>
+          <td><a class="btn btn-warning" href="{{article.edit_url}}">Edit</a></td>
           <td>
-            <a data-confirm="Are you sure?" class="btn btn-danger" rel="nofollow" data-method="delete" href="<%= url_for controller: 'articles' %>/{{article.id}}">Destroy</a>
+            <a data-confirm="Are you sure?" class="btn btn-danger" rel="nofollow" data-method="delete" href="{{article.show_url}}">Destroy</a>
           </td>
         </tr>
       </tbody>

@@ -7,14 +7,27 @@
         $http.get('/articles.json').then(function (response) {
             if(response.status === 200) {
                 $scope.articles = response.data;
-
-                setTimeout(function(){
-                    $.LoadingOverlay("hide");
-                }, 500);
             }
+        });
+
+        $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+            $.LoadingOverlay("hide");
         });
     };
 
     app.controller('ArticlesController', ['$scope', '$http', ArticlesController]);
+
+    app.directive('onFinishRender', function ($timeout) {
+        return {
+            restrict: 'A',
+            link: function (scope, element, attr) {
+                if (scope.$last === true) {
+                    $timeout(function () {
+                        scope.$emit(attr.onFinishRender);
+                    });
+                }
+            }
+        }
+    });
 
 })(jQuery);
