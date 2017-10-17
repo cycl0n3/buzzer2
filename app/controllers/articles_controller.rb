@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   after_action :verify_authorized, except: [:new]
 
   def index
-    @articles = current_user.articles.limit(10)
+    @articles = current_user.articles.limit(50)
     authorize Article
   end
 
