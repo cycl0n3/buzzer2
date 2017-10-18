@@ -20,9 +20,6 @@ class ArticlesController < ApplicationController
     authorize @article
   end
 
-  def error
-  end
-
   def create
     @article = current_user.articles.build(article_params)
 
