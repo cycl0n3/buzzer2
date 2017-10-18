@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   after_action :verify_authorized, except: [:new]
 
   def index
-    @articles = current_user.articles.limit(50)
+    @articles = current_user.articles
     authorize Article
   end
 
@@ -40,7 +40,13 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
+        #format.json { render :show, status: :ok, location: @article }
+        format.json {
+          render json: {
+              code: '200',
+              data: [@article]
+          }
+        }
       else
         format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }

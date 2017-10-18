@@ -8,20 +8,24 @@
         progress: function (p) {
         },
         fail: function (data) {
+            console.log(data);
+
             if(typeof data === "string") {
                 data = JSON.parse(data);
             }
 
-            alert(JSON.stringify(data));
+            // alert(JSON.stringify(data));
 
             $.LoadingOverlay("hide");
         },
         success: function (data) {
+            console.log(data);
+
             if(typeof data === "string") {
                 data = JSON.parse(data);
             }
 
-            alert(JSON.stringify(data));
+            // alert(JSON.stringify(data));
 
             $.LoadingOverlay("hide");
         }
