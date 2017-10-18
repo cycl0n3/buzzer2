@@ -16,3 +16,4 @@
 //= require rails-ujs
 //= require bootstrap
 //= require gasparesganga-jquery-loading-overlay/src/loadingoverlay.js
+//= require submitter

@@ -6,6 +6,7 @@
     "bootstrap3-dialog": "^1.35.4",
     "gasparesganga-jquery-loading-overlay": "^1.5.4",
     "handlebars": "^4.0.10",
-    "jquery": "^3.2.1"
+    "jquery": "^3.2.1",
+    "submitter": "^0.0.7"
   }
 }
