@@ -3,10 +3,13 @@
   "private": true,
   "dependencies": {
     "angular": "^1.6.6",
+    "axios": "^0.17.0",
     "bootstrap3-dialog": "^1.35.4",
     "gasparesganga-jquery-loading-overlay": "^1.5.4",
     "handlebars": "^4.0.10",
     "jquery": "^3.2.1",
+    "mootools-core-dist": "^1.5.1-dist",
+    "requirejs": "^2.3.5",
     "submitter": "^0.0.7",
     "vue": "^2.5.2"
   }

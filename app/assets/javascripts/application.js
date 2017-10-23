@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require angular
+//= require mootools-core-dist/dist/mootools-core
 //= require handlebars/dist/handlebars
 //= require rails-ujs
 //= require bootstrap

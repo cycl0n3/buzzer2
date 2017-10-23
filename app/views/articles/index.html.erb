@@ -1,31 +1,4 @@
-<div class="section" ng-app="ArticlesApp">
-  <div ng-controller="ArticlesController">
-    <h3>Articles</h3>
-
-    <table class="table table-bordered table-striped">
-      <thead>
-      <tr>
-        <th>Title</th>
-        <th colspan="3"></th>
-      </tr>
-      </thead>
-
-      <tbody>
-        <tr ng-repeat="article in articles" on-finish-render="ngRepeatFinished">
-          <td>{{article.title}}</td>
-          <td><a class="btn btn-info" href="{{article.show_url}}">Show</a></td>
-          <td><a class="btn btn-warning" href="{{article.edit_url}}">Edit</a></td>
-          <td>
-            <a data-confirm="Are you sure?" class="btn btn-danger" rel="nofollow" data-method="delete" href="{{article.show_url}}">Destroy</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <br>
-
-    <%= link_to 'New Article', new_article_path, class: 'btn btn-success' %>
-  </div>
+<div class="section">
 </div>
 
 <%= javascript_include_tag 'articles/articles-index' %>

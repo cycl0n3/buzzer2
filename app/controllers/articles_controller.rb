@@ -6,6 +6,12 @@ class ArticlesController < ApplicationController
   def index
     @articles = current_user.articles
     authorize Article
+
+    respond_to do |format|
+      format.html { render :index }
+      format.json
+      format.js
+    end
   end
 
   def show

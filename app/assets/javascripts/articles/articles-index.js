@@ -1,5 +1,5 @@
 (function ($) {
-    var app = angular.module('ArticlesApp', []);
+    /*var app = angular.module('ArticlesApp', []);
 
     var ArticlesController = function ($scope, $http) {
         $.LoadingOverlay("show");
@@ -28,6 +28,24 @@
                 }
             }
         }
+    });*/
+
+    var req = new Request({
+        url: '/articles.js',
+        method: 'GET',
+        onRequest: function() {
+            $.LoadingOverlay("show");
+        },
+        onSuccess: function (/*responseText, responseXML*/) {
+            $.LoadingOverlay("hide");
+        },
+        onFailure: function (xhr) {
+            alert('Error: ' + JSON.stringify(xhr));
+            $.LoadingOverlay("hide");
+        }
     });
 
+    $(document).ready(function () {
+        req.send();
+    });
 })(jQuery);
