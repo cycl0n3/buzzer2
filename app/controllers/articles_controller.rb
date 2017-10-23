@@ -16,6 +16,12 @@ class ArticlesController < ApplicationController
 
   def show
     authorize @article
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json
+      format.js
+    end
   end
 
   def new

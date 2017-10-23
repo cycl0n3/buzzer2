@@ -1,1 +1,1 @@
-$('.section').append("<%= escape_javascript(render 'list', articles: @articles) %>");
+$('.section').html("<%= escape_javascript(render 'index', articles: @articles) %>");
