@@ -11,14 +11,18 @@
 
     <tbody>
       <% articles.each do |article| %>
-        <% click = 'showArticle('+article.id.to_s+')' %>
+        <% show = 'showArticle('+article.id.to_s+')' %>
+        <% edit = 'editArticle('+article.id.to_s+')' %>
         <tr>
           <td><%= article.title %></td>
           <td>
             <%#= link_to 'Show', article, class: 'btn btn-info' %>
-            <%= button_tag 'Show', type: 'button', class: 'btn btn-info', 'data-toggle': 'modal', 'data-target': '#showModal', onclick: click %>
+            <%= button_tag 'Show', type: 'button', class: 'btn btn-info', 'data-toggle': 'modal', 'data-target': '#showModal', onclick: show %>
           </td>
-          <td><%= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %></td>
+          <td>
+            <%#= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %>
+            <%= button_tag 'Edit', type: 'button', class: 'btn btn-warning', 'data-toggle': 'modal', 'data-target': '#editModal', onclick: edit %>
+          </td>
           <td><%= link_to 'Destroy', article, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>

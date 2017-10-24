@@ -1,4 +1,4 @@
-$(document).ready(function () {
+function loadArticles() {
     var req = new Request({
         url: '/articles.js',
         method: 'GET',
@@ -15,7 +15,7 @@ $(document).ready(function () {
     });
 
     req.send();
-});
+}
 
 function showArticle(articleId) {
     var req = new Request({
@@ -35,3 +35,26 @@ function showArticle(articleId) {
 
     req.send();
 }
+
+function editArticle(articleId) {
+    var req = new Request({
+        url: '/articles/'+articleId+'/edit'+'.js',
+        method: 'GET',
+        onRequest: function() {
+            $.LoadingOverlay("show");
+        },
+        onSuccess: function (/*responseText, responseXML*/) {
+            $.LoadingOverlay("hide");
+        },
+        onFailure: function (xhr) {
+            alert('Error: ' + JSON.stringify(xhr));
+            $.LoadingOverlay("hide");
+        }
+    });
+
+    req.send();
+}
+
+$(document).ready(function () {
+    loadArticles();
+});

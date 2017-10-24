@@ -18,7 +18,6 @@ class ArticlesController < ApplicationController
     authorize @article
 
     respond_to do |format|
-      format.html { render :show }
       format.json
       format.js
     end
@@ -30,6 +29,10 @@ class ArticlesController < ApplicationController
 
   def edit
     authorize @article
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -51,17 +54,11 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        #format.json { render :show, status: :ok, location: @article }
-        format.json {
-          render json: {
-              code: '200',
-              data: [@article]
-          }
-        }
+        format.json { render :show, status: :ok, location: @article }
+        format.js
       else
-        format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.js { render 'noupdate.js.erb' }
       end
     end
   end
