@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_article, only: [:show, :edit, :update, :destroy, :error]
-  after_action :verify_authorized, except: [:new]
+  after_action :verify_authorized, except: [:new, :create]
 
   def index
     @articles = current_user.articles
@@ -24,7 +24,12 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article = current_user.articles.build
+    @article = Article.new
+
+    respond_to do |format|
+      format.json
+      format.js
+    end
   end
 
   def edit
@@ -40,11 +45,11 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
+        format.js
       else
-        format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
+        format.js { render 'noupdate.js.erb' }
       end
     end
   end
@@ -76,7 +81,12 @@ class ArticlesController < ApplicationController
   private
     def user_not_authorized
       # render :file => 'public/404.html', :status => :not_found, :layout => false
-      render :file => 'public/404.html', :status => :not_found
+      respond_to do |format|
+        format.html {
+          render :file => 'public/404.html', :status => :not_found
+        }
+        format.js { render '404.js.erb' }
+      end
     end
 
     def set_article

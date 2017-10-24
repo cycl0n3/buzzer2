@@ -1,6 +1,11 @@
 <div>
   <h3>Articles</h3>
 
+  <p>
+    <%#= link_to 'New Article', new_article_path, class: 'btn btn-success' %>
+    <%= button_tag 'New Article', type: 'button', class: 'btn btn-success', 'data-toggle': 'modal', 'data-target': '#newModal', onclick: 'newArticle()' %>
+  </p>
+
   <table class="table table-bordered table-striped">
     <thead>
     <tr>
@@ -11,25 +16,21 @@
 
     <tbody>
       <% articles.each do |article| %>
-        <% show = 'showArticle('+article.id.to_s+')' %>
-        <% edit = 'editArticle('+article.id.to_s+')' %>
+        <% showArticle = 'showArticle('+article.id.to_s+')' %>
+        <% editArticle = 'editArticle('+article.id.to_s+')' %>
         <tr>
           <td><%= article.title %></td>
           <td>
             <%#= link_to 'Show', article, class: 'btn btn-info' %>
-            <%= button_tag 'Show', type: 'button', class: 'btn btn-info', 'data-toggle': 'modal', 'data-target': '#showModal', onclick: show %>
+            <%= button_tag 'Show', type: 'button', class: 'btn btn-info', 'data-toggle': 'modal', 'data-target': '#showModal', onclick: showArticle %>
           </td>
           <td>
             <%#= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %>
-            <%= button_tag 'Edit', type: 'button', class: 'btn btn-warning', 'data-toggle': 'modal', 'data-target': '#editModal', onclick: edit %>
+            <%= button_tag 'Edit', type: 'button', class: 'btn btn-warning', 'data-toggle': 'modal', 'data-target': '#editModal', onclick: editArticle %>
           </td>
           <td><%= link_to 'Destroy', article, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
-
-  <br>
-
-  <%= link_to 'New Article', new_article_path, class: 'btn btn-success' %>
 </div>
