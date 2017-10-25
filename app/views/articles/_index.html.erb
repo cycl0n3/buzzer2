@@ -2,7 +2,7 @@
   <h3>Articles</h3>
 
   <p>
-    <%#= link_to 'New Article', new_article_path, class: 'btn btn-success' %>
+    <%#= link_to 'New Article', new_article_path, class: 'btn btn-success', 'data-toggle': 'modal', 'data-target': '#newModal', remote: true %>
     <%= button_tag 'New Article', type: 'button', class: 'btn btn-success', 'data-toggle': 'modal', 'data-target': '#newModal', onclick: 'newArticle()' %>
   </p>
 
@@ -16,17 +16,15 @@
 
     <tbody>
       <% articles.each do |article| %>
-        <% showArticle = 'showArticle('+article.id.to_s+')' %>
-        <% editArticle = 'editArticle('+article.id.to_s+')' %>
         <tr>
           <td><%= article.title %></td>
           <td>
             <%#= link_to 'Show', article, class: 'btn btn-info' %>
-            <%= button_tag 'Show', type: 'button', class: 'btn btn-info', 'data-toggle': 'modal', 'data-target': '#showModal', onclick: showArticle %>
+            <%= button_tag 'Show', type: 'button', class: 'btn btn-info', 'data-toggle': 'modal', 'data-target': '#showModal', onclick: "showArticle(#{article.id})" %>
           </td>
           <td>
             <%#= link_to 'Edit', edit_article_path(article), class: 'btn btn-warning' %>
-            <%= button_tag 'Edit', type: 'button', class: 'btn btn-warning', 'data-toggle': 'modal', 'data-target': '#editModal', onclick: editArticle %>
+            <%= button_tag 'Edit', type: 'button', class: 'btn btn-warning', 'data-toggle': 'modal', 'data-target': '#editModal', onclick: "editArticle(#{article.id})" %>
           </td>
           <td><%= link_to 'Destroy', article, class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

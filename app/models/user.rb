@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :articles
+  has_many :articles, -> { order('created_at DESC, title ASC') }, :dependent => :nullify
 
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
@@ -19,5 +19,10 @@ class User < ApplicationRecord
 
   def password_required?
     encrypted_password.blank? || password.present?
+  end
+
+  def username
+    n = email.split('@')[0].split('.')
+    "#{n[0].capitalize} #{n[1].capitalize}"
   end
 end
